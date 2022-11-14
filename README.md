@@ -1,11 +1,11 @@
 # Simulations for "Forward motion of extended fracture by local nucleation and rapid transverse expansion"
 
 
-Simulation main file and input files and axiliary helper scripts are provided. 
+Simulation main file, input files, and axiliary helper script are provided. 
 
 ## Dependencies
 
-- [Uguca](https://gitlab.com/uguca/uguca)
+- [Uguca](https://gitlab.com/uguca/uguca) (1.x)
 - [CMake](https://cmake.org/) (3.1.0 or higher)
 - [OpenMPI](https://www.open-mpi.org/) (2.x or higher)
 - [Python](https://www.python.org/) (3.x)
