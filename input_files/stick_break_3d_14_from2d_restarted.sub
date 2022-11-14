@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH -N 1                 # Number of nodes
+#SBATCH -n 12                # Number of processes
+#SBATCH -t 1-00:00           # Runtime in D-HH:MM, minimum of 10 minutes
+#SBATCH -p shared            # Partition to submit to: shared has 48 core Intel "Cascade Lake" 184GB RAM
+#SBATCH --mem=84000         # Memory pool for all cores (see also --mem-per-cpu)
+#SBATCH -o %j.out  # File to which STDOUT will be written, %j inserts jobid
+#SBATCH -e %j.err  # File to which STDERR will be written, %j inserts jobid
+
+source ~/module-list.sh
+
+mpirun -np 8 crack_face_forces stick_break_2d_14.in 2>&1 | tee stick_break_2d_14.progress
+cp stick_break_2d_14.in raw_data/stick_break_2d_14.in
+cp stick_break_2d_14.sub raw_data/stick_break_2d_14.sub
+cp stick_break_2d_14.run raw_data/stick_break_2d_14.run
+cp stick_break_2d_14.progress raw_data/stick_break_2d_14.progress
+
+./crack_face_forces_2d_to_3d_restart.py stick_break_2d_14 
+
+mpirun crack_face_forces stick_break_3d_14_from2d_restarted.in 2>&1 | tee stick_break_3d_14_from2d_restarted.progress
+cp stick_break_3d_14_from2d_restarted.in raw_data/stick_break_3d_14_from2d_restarted.in
+cp stick_break_3d_14_from2d_restarted.sub raw_data/stick_break_3d_14_from2d_restarted.sub
+cp stick_break_3d_14_from2d_restarted.run raw_data/stick_break_3d_14_from2d_restarted.run
+cp stick_break_3d_14_from2d_restarted.progress raw_data/stick_break_3d_14_from2d_restarted.progress
+
+

@@ -1,0 +1,69 @@
+
+simulation_name = stick_break_3d_36_from2d_restarted
+dump_folder     = raw_data/
+
+# load
+shear_load  = 0.00e+00
+normal_load = 0.00e+00
+
+# material
+mat_names = top,bot # name of material _name
+E_top   = 3.30e+09
+nu_top  = 0.33
+rho_top = 1200
+pstress_top = False
+
+
+# interface
+tauc = 8.00e+07
+dc   = 1.25e-05
+
+# interface heterogeneity
+het_tauc = 6.48e+07
+het_dc   = 1.25e-05
+het_xstart = 1.153381e-02
+het_xend   = 1.00e+00
+
+# geometry
+x_length       = 0.08
+nb_x_elements  = 4096
+z_length       = 0.04
+nb_z_elements  = 2048
+
+# notch
+notch_length = 2.50e-03
+
+# nucleation 
+nuc_tauc     = 6.48e+07
+nuc_r        = 4.000000e-03
+nuc_x_center = 1.15e-02
+nuc_z_center = 0.00e+00
+nuc_tstart   = 1.00e-03
+nuc_tend     = 1.04e-03
+nuc_xc0      = 2.56e-04
+nuc_sym      = False
+unilateral_crack_growth = True
+
+# pressure on crack face
+pressure = 4.772571e+07
+pressure_length = 2.500000e-03
+
+# set quasi_dynamic
+quasi_dynamic_start_time = 0.00e+00
+quasi_dynamic_end_time = 1.00e-03
+
+# time
+duration = 0.0010432092740377834
+stop_at_sliding = True
+tsf = 0.20
+
+# output
+dump_interval = 1e-06
+dump_fields   = cohesion_1,top_disp_1,top_velo_1
+
+# restart
+restart_name = stick_break_3d_36_from2d
+restart_dir  = input_data/
+restart_load_time = 0.001
+
+
